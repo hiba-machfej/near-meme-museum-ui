@@ -10,7 +10,10 @@
   "dependencies": {
     "@headlessui/vue": "^1.1.1",
     "@heroicons/vue": "^1.0.1",
+    "big.js": "^6.1.1",
     "core-js": "^3.6.5",
+    "date-fns": "^2.22.1",
+    "near-api-js": "^0.41.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
