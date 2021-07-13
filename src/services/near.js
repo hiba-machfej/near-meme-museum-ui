@@ -2,7 +2,7 @@ import { keyStores, Near, WalletConnection, utils } from "near-api-js";
 import BN from "bn.js";
 
 export const CONTRACT_ID = "museum.testnet";
-const gas = new BN("30_000_000_000_000");
+const gas = new BN("70000000000000");
 
 // use new NEAR here to avoid needing async/await
 export const near = new Near({
@@ -50,7 +50,24 @@ export const addComment = ({ meme, text }) => {
     methodName: "add_comment",
     args: { text },
   });
-  // console.log("this is services layer");
-  // console.log(meme);
-  // console.log(text);
+};
+
+export const donate = ({ meme, amount }) => {
+  const memeContractId = meme + "." + CONTRACT_ID;
+
+  return wallet.account().functionCall({
+    contractId: memeContractId,
+    methodName: "donate",
+    attachedDeposit: utils.format.parseNearAmount(amount),
+  });
+};
+
+export const vote = ({ meme, value }) => {
+  const memeContractId = meme + "." + CONTRACT_ID;
+
+  return wallet.account().functionCall({
+    contractId: memeContractId,
+    methodName: "vote",
+    args: { value },
+  });
 };
