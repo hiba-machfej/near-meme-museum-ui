@@ -2,7 +2,12 @@
   <SignIn />
   <Hero />
   <Form :addMeme="addMeme" />
-  <Memes :memeList="memeList" :addComment="addComment" />
+  <Memes
+    :memeList="memeList"
+    :addComment="addComment"
+    :donate="donate"
+    :vote="vote"
+  />
 </template>
 
 <script>
@@ -19,12 +24,14 @@ export default {
     Hero,
   },
   setup() {
-    const { memeList, addMeme, addComment } = useMemes();
+    const { memeList, addMeme, addComment, donate, vote } = useMemes();
 
     return {
       memeList,
       addMeme,
       addComment,
+      donate,
+      vote,
     };
   },
 };
