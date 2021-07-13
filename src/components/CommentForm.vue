@@ -7,6 +7,7 @@
         name="comment"
         id="comment"
         placeholder="Write a comment..."
+        class="border rounded p-1 px-3 w-72"
       />
     </form>
 
