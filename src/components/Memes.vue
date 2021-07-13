@@ -29,7 +29,7 @@
                     <!-- {{ meme.index }} -->
                   </p>
                   <p class="text-sm text-gray-400">
-                    {{ meme.memeOwner }}.museum.testnet
+                    {{ meme.memeName }}.museum.testnet
                   </p>
                 </div>
                 <p class="text-xs text-gray-500 w-20">

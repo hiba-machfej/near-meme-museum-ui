@@ -23,7 +23,7 @@ export const useMemes = () => {
       const result = reactive({
         info: {},
         comments: {},
-        memeOwner: "",
+        memeName: "",
         memeImg: "",
         index: index,
       });
@@ -46,7 +46,7 @@ export const useMemes = () => {
       );
       // a for loop to match the accountId of the mems with the memeList
       for (let i = 0; i < memeList.value.length; i++) {
-        memeList.value[i].memeOwner = memes.value[i];
+        memeList.value[i].memeName = memes.value[i];
       }
       //sorting the memes according to the latest in the blockchain
       memeList.value = memeList.value.sort((a, b) =>
@@ -57,8 +57,7 @@ export const useMemes = () => {
 
   // create a function that allows adding a message to the blockchain
   const handleAddMeme = async ({ meme, title, data, category }) => {
-    await addMeme({ meme, title, data, category });
-    memes.value = await getMemeList();
+    addMeme({ meme, title, data, category });
   };
 
   const handleAddComment = async ({ index, text }) => {
