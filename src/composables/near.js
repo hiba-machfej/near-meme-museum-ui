@@ -5,6 +5,8 @@ import {
   getMeme,
   getMemeComments,
   addComment,
+  donate,
+  vote,
 } from "../services/near";
 
 export const useMemes = () => {
@@ -61,15 +63,24 @@ export const useMemes = () => {
 
   const handleAddComment = async ({ index, text }) => {
     const meme = memes.value[index];
-    // console.log("this is composable layer");
-    // console.log(meme);
-    // console.log(text);
     await addComment({ text, meme });
+  };
+
+  const handleDonate = async ({ index, amount }) => {
+    const meme = memes.value[index];
+    await donate({ meme, amount });
+  };
+
+  const handleVote = async ({ index, value }) => {
+    const meme = memes.value[index];
+    await vote({ meme, value });
   };
 
   return {
     memeList,
     addMeme: handleAddMeme,
     addComment: handleAddComment,
+    donate: handleDonate,
+    vote: handleVote,
   };
 };
