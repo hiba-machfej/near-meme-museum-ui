@@ -24,7 +24,7 @@ export default {
     SignIn,
     Form,
     Hero,
-    TransactionAlert
+    TransactionAlert,
   },
   setup() {
     const { memes, addMeme, addComment, donate, vote } = useMemes();

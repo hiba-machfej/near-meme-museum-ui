@@ -17,21 +17,23 @@ export const useMemes = () => {
     // when the component first mounts it get the memes from the blockchain
     const memeIds = await getMemes();
 
-    memes.value = await Promise.all(
-      memeIds.map(async (id) => {
-        const info = await getMeme(id);
-        const comments = await getMemeComments(id);
+    memes.value = (
+      await Promise.all(
+        memeIds.map(async (id) => {
+          const info = await getMeme(id);
+          const comments = await getMemeComments(id);
 
-        return {
-          id,
-          info,
-          comments,
-          image: `https://img-9gag-fun.9cache.com/photo/${
-            info.data.split("https://9gag.com/gag/")[1]
-          }_460s.jpg`,
-        };
-      })
-    );
+          return {
+            id,
+            info,
+            comments,
+            image: `https://img-9gag-fun.9cache.com/photo/${
+              info.data.split("https://9gag.com/gag/")[1]
+            }_460s.jpg`,
+          };
+        })
+      )
+    ).reverse();
   });
 
   // create a function that allows adding a message to the blockchain
