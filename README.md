@@ -11,6 +11,8 @@ Any content produced by NEAR, or developer resources that NEAR provides, are for
 
 # Check out the project <a href="https://near-meme-museum.onrender.com/">here</a>.
 
+![screenshot-near-meme-museum onrender com-2021 07 15-14_20_52](https://user-images.githubusercontent.com/58190902/125782790-f8d8a12c-8599-4a8d-ad12-9f5fb838e089.png)
+
 ## Project setup
 ```
 yarn install
