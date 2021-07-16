@@ -11,7 +11,11 @@
         >
           <div class="flex-shrink-0">
             <a :href="meme.info.data" target="_blank">
-              <img class="h-80 w-full object-cover" :src="meme.image" alt="" />
+              <img
+                class="h-80 w-full object-cover"
+                :src="meme.image"
+                :alt="meme.info.title"
+              />
             </a>
           </div>
           <div
