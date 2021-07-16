@@ -10,7 +10,11 @@
           class="rounded-2xl shadow-lg overflow-hidden bg-white"
         >
           <div class="flex-shrink-0">
-            <a :href="meme.info.data" target="_blank">
+            <a
+              :href="meme.info.data"
+              rel="noopener noreferrer nofollow"
+              target="_blank"
+            >
               <img
                 class="h-80 w-full object-cover"
                 :src="meme.image"
