@@ -1,6 +1,6 @@
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted } from "vue";
 import {
-  getMemeList,
+  getMemes,
   addMeme,
   getMeme,
   getMemeComments,
@@ -12,47 +12,36 @@ import {
 export const useMemes = () => {
   // memes starts as an empty array
   const memes = ref([]);
-  const memeList = ref([]);
+  const err = ref(null);
 
   onMounted(async () => {
     // when the component first mounts it get the memes from the blockchain
-    memes.value = await getMemeList();
 
-    // then for each single meme it gets the info and comments
-    await memes.value.forEach(async (meme, index) => {
-      const result = reactive({
-        info: {},
-        comments: {},
-        memeName: "",
-        memeImg: "",
-        index: index,
-      });
+    try {
+      const memeIds = await getMemes();
 
-      result.info = await getMeme(meme);
-      result.comments = await getMemeComments(meme);
+      memes.value = (
+        await Promise.all(
+          memeIds.map(async (id) => {
+            const info = await getMeme(id);
+            const comments = await getMemeComments(id);
 
-      // it takes the 9gag link and extract the image
-      result.memeImg =
-        "https://img-9gag-fun.9cache.com/photo/" +
-        result.info.data.split("https://9gag.com/gag/")[1] +
-        "_460s.jpg";
-
-      // it pushes the results objects to a memeList
-      await memeList.value.push(result);
-
-      // sort the memes according the index coming from the mems because the getMeme function brings them back randomly
-      memeList.value = memeList.value.sort((a, b) =>
-        a.index > b.index ? 1 : b.index > a.index ? -1 : 0
-      );
-      // a for loop to match the accountId of the mems with the memeList
-      for (let i = 0; i < memeList.value.length; i++) {
-        memeList.value[i].memeName = memes.value[i];
-      }
-      //sorting the memes according to the latest in the blockchain
-      memeList.value = memeList.value.sort((a, b) =>
-        a.index > b.index ? -1 : b.index > a.index ? 1 : 0
-      );
-    });
+            return {
+              id,
+              info,
+              comments,
+              // The coming data has a 9gag link, so to display the 9gag image in the website we are splitting the 9gag link to retrieve the meme's ID. We can display the image by adding the ID to the following url: http://img-9gag-fun.9cache.com/photo/ID_460s.jpg
+              image: `https://img-9gag-fun.9cache.com/photo/${
+                info.data.split("https://9gag.com/gag/")[1]
+              }_460s.jpg`,
+            };
+          })
+        )
+      ).reverse();
+    } catch (e) {
+      err.value = e;
+      console.log(err.value);
+    }
   });
 
   // create a function that allows adding a message to the blockchain
@@ -61,22 +50,22 @@ export const useMemes = () => {
   };
 
   const handleAddComment = async ({ index, text }) => {
-    const meme = memes.value[index];
+    const meme = memes.value[index].id;
     await addComment({ text, meme });
   };
 
   const handleDonate = async ({ index, amount }) => {
-    const meme = memes.value[index];
+    const meme = memes.value[index].id;
     await donate({ meme, amount });
   };
 
   const handleVote = async ({ index, value }) => {
-    const meme = memes.value[index];
+    const meme = memes.value[index].id;
     await vote({ meme, value });
   };
 
   return {
-    memeList,
+    memes,
     addMeme: handleAddMeme,
     addComment: handleAddComment,
     donate: handleDonate,

@@ -16,9 +16,10 @@ export const near = new Near({
 export const wallet = new WalletConnection(near, "museum");
 
 // a service to get memes from the blockchain
-export const getMemeList = () => {
+export const getMemes = () => {
   return wallet.account().viewFunction(CONTRACT_ID, "get_meme_list", {});
 };
+
 // a service to add a meme from the blockchain but this is not working for now
 export const addMeme = ({ meme, title, data, category }) => {
   return wallet.account().functionCall({
@@ -42,9 +43,10 @@ export const getMemeComments = (meme) => {
     .account()
     .viewFunction(memeContractId, "get_recent_comments", {});
 };
+
 // a service to add a comment to a meme
 export const addComment = ({ meme, text }) => {
-  const memeContractId = meme + "." + CONTRACT_ID;
+  const memeContractId = `${meme}.${CONTRACT_ID}`;
   return wallet.account().functionCall({
     contractId: memeContractId,
     methodName: "add_comment",
@@ -53,7 +55,7 @@ export const addComment = ({ meme, text }) => {
 };
 
 export const donate = ({ meme, amount }) => {
-  const memeContractId = meme + "." + CONTRACT_ID;
+  const memeContractId = `${meme}.${CONTRACT_ID}`;
 
   return wallet.account().functionCall({
     contractId: memeContractId,
@@ -63,7 +65,7 @@ export const donate = ({ meme, amount }) => {
 };
 
 export const vote = ({ meme, value }) => {
-  const memeContractId = meme + "." + CONTRACT_ID;
+  const memeContractId = `${meme}.${CONTRACT_ID}`;
 
   return wallet.account().functionCall({
     contractId: memeContractId,

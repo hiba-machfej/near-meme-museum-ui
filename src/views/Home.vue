@@ -4,7 +4,7 @@
   <TransactionAlert />
   <Form :addMeme="addMeme" />
   <Memes
-    :memeList="memeList"
+    :memes="memes"
     :addComment="addComment"
     :donate="donate"
     :vote="vote"
@@ -24,13 +24,13 @@ export default {
     SignIn,
     Form,
     Hero,
-    TransactionAlert
+    TransactionAlert,
   },
   setup() {
-    const { memeList, addMeme, addComment, donate, vote } = useMemes();
+    const { memes, addMeme, addComment, donate, vote } = useMemes();
 
     return {
-      memeList,
+      memes,
       addMeme,
       addComment,
       donate,

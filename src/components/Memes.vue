@@ -5,16 +5,20 @@
         class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none"
       >
         <div
-          v-for="meme in memeList"
+          v-for="meme in memes"
           :key="meme"
           class="rounded-2xl shadow-lg overflow-hidden bg-white"
         >
           <div class="flex-shrink-0">
-            <a :href="meme.info.data" target="_blank">
+            <a
+              :href="meme.info.data"
+              rel="noopener noreferrer nofollow"
+              target="_blank"
+            >
               <img
                 class="h-80 w-full object-cover"
-                :src="meme.memeImg"
-                alt=""
+                :src="meme.image"
+                :alt="meme.info.title"
               />
             </a>
           </div>
@@ -29,7 +33,7 @@
                     <!-- {{ meme.index }} -->
                   </p>
                   <p class="text-sm text-gray-400">
-                    {{ meme.memeName }}.museum.testnet
+                    {{ meme.id }}.museum.testnet
                   </p>
                 </div>
                 <p class="text-xs text-gray-500 w-20">
@@ -143,7 +147,7 @@ export default {
     ThumbDownIcon,
   },
   props: {
-    memeList: {
+    memes: {
       type: Array,
       required: true,
     },
