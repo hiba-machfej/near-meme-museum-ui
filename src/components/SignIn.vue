@@ -9,7 +9,7 @@
       </div>
       <div v-if="accountId" class="flex w-40 justify-between">
         <p>{{ accountId }}</p>
-        <button @click="signIn">
+        <button @click="signOut">
           {{ "Log out" }}
         </button>
       </div>
@@ -31,6 +31,10 @@ export default {
     return {
       accountId,
       signIn: () => wallet.requestSignIn(CONTRACT_ID),
+      signOut: () => {
+        wallet.signOut();
+        window.location.reload();
+      },
     };
   },
 };
