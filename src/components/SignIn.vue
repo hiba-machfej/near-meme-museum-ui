@@ -7,10 +7,13 @@
         <img class="w-8 md:w-12" src="@/assets/logo.svg" alt="logo" />
         <p>Meme Museum</p>
       </div>
+      <div v-if="accountId" class="flex w-40 justify-between">
+        <p>{{ accountId }}</p>
+        <button @click="signIn">
+          {{ "Log out" }}
+        </button>
+      </div>
 
-      <button v-if="accountId" @click="signIn">
-        {{ "Log out" }}
-      </button>
       <button v-else @click="signIn">
         {{ "Login with NEAR Wallet" }}
       </button>
