@@ -45,8 +45,8 @@ export const getMemeComments = (meme) => {
 };
 
 // a service to add a comment to a meme
-export const addComment = ({ meme, text }) => {
-  const memeContractId = `${meme}.${CONTRACT_ID}`;
+export const addComment = ({ memeId, text }) => {
+  const memeContractId = `${memeId}.${CONTRACT_ID}`;
   return wallet.account().functionCall({
     contractId: memeContractId,
     methodName: "add_comment",
@@ -54,8 +54,8 @@ export const addComment = ({ meme, text }) => {
   });
 };
 
-export const donate = ({ meme, amount }) => {
-  const memeContractId = `${meme}.${CONTRACT_ID}`;
+export const donate = ({ memeId, amount }) => {
+  const memeContractId = `${memeId}.${CONTRACT_ID}`;
 
   return wallet.account().functionCall({
     contractId: memeContractId,
@@ -64,8 +64,8 @@ export const donate = ({ meme, amount }) => {
   });
 };
 
-export const vote = ({ meme, value }) => {
-  const memeContractId = `${meme}.${CONTRACT_ID}`;
+export const vote = ({ memeId, value }) => {
+  const memeContractId = `${memeId}.${CONTRACT_ID}`;
 
   return wallet.account().functionCall({
     contractId: memeContractId,

@@ -30,7 +30,6 @@
                 <div class="flex flex-col items-start">
                   <p class="text-2xl font-semibold text-gray-900">
                     {{ meme.info.title }}
-                    <!-- {{ meme.index }} -->
                   </p>
                   <p class="text-sm text-gray-400">
                     {{ meme.id }}.museum.testnet
@@ -79,20 +78,20 @@
                   <p>Vote</p>
                   <button
                     class="p-1 px-4"
-                    @click.prevent="vote({ index: meme.index, value: 1 })"
+                    @click.prevent="vote({ memeId: meme.id, value: 1 })"
                   >
                     <ThumbUpIcon class="h-5 w-5 text-indigo-500" />
                   </button>
                   <button
                     class=""
-                    @click.prevent="vote({ index: meme.index, value: -1 })"
+                    @click.prevent="vote({ memeId: meme.id, value: -1 })"
                   >
                     <ThumbDownIcon class="h-5 w-5 text-indigo-500" />
                   </button>
                 </div>
                 <button
                   class="border border-black p-2 rounded-full"
-                  @click.prevent="donate({ index: meme.index, amount: '1' })"
+                  @click.prevent="donate({ memeId: meme.id, amount: '1' })"
                 >
                   Donate 1 Ⓝ
                 </button>
@@ -103,7 +102,7 @@
               >
                 <h2 class="text-xl text-black mt-4">Comments:</h2>
               </div>
-              <CommentForm :addComment="addComment" :index="meme.index" />
+              <CommentForm :addComment="addComment" :memeId="meme.id" />
               <ul
                 v-for="comment in meme.comments"
                 :key="comment"

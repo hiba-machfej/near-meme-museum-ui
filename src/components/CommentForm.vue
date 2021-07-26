@@ -24,8 +24,8 @@ export default {
       type: Function,
       required: true,
     },
-    index: {
-      type: Number,
+    memeId: {
+      type: String,
       required: true,
     },
   },
@@ -35,7 +35,7 @@ export default {
 
     const handleSubmit = () => {
       props.addComment({
-        index: props.index,
+        memeId: props.memeId,
         text: comment.value,
       });
     };

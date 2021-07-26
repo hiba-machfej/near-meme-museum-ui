@@ -49,19 +49,16 @@ export const useMemes = () => {
     addMeme({ meme, title, data, category });
   };
 
-  const handleAddComment = async ({ index, text }) => {
-    const meme = memes.value[index].id;
-    await addComment({ text, meme });
+  const handleAddComment = async ({ memeId, text }) => {
+    await addComment({ memeId, text });
   };
 
-  const handleDonate = async ({ index, amount }) => {
-    const meme = memes.value[index].id;
-    await donate({ meme, amount });
+  const handleDonate = async ({ memeId, amount }) => {
+    await donate({ memeId, amount });
   };
 
-  const handleVote = async ({ index, value }) => {
-    const meme = memes.value[index].id;
-    await vote({ meme, value });
+  const handleVote = async ({ memeId, value }) => {
+    await vote({ memeId, value });
   };
 
   return {
