@@ -10,17 +10,20 @@
         :key="field.id"
         class="flex px-4 items-center"
       >
-        <label :for="field.id" class="mr-2">{{ field.label }}</label>
         <div class="flex flex-col h-10">
-          <Field
-            :v-model="field.id"
-            type="text"
-            :name="field.id"
-            :id="field.id"
-            :placeholder="field.label"
-            class="border rounded p-1 px-3 w-40"
-          />
-          <ErrorMessage :name="field.id" />
+          <div>
+            <label :for="field.id" class="mr-2">{{ field.label }}</label>
+
+            <Field
+              :v-model="field.id"
+              type="text"
+              :name="field.id"
+              :id="field.id"
+              :placeholder="field.label"
+              class="border rounded p-1 px-3 w-40"
+            />
+          </div>
+          <ErrorMessage :name="field.id" class="w-64" />
         </div>
       </div>
       <div>
