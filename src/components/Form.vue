@@ -23,7 +23,7 @@
               class="border rounded p-1 px-3 w-40"
             />
           </div>
-          <ErrorMessage :name="field.id" class="w-64" />
+          <ErrorMessage :name="field.id" class="w-64 text-red-500" />
         </div>
       </div>
       <div>
@@ -136,8 +136,7 @@ export default {
     const category = ref(0);
 
     const handleSubmit = (values) => {
-      // props.addMeme(values);
-      console.log(values);
+      props.addMeme(values);
     };
 
     const formFields = [
