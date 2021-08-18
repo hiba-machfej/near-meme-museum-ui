@@ -2,7 +2,7 @@
   <SignIn />
   <Hero />
   <TransactionAlert />
-  <Form :addMeme="addMeme" />
+  <Form :addMeme="addMeme" :memes="memes" />
   <Memes
     :memes="memes"
     :addComment="addComment"
